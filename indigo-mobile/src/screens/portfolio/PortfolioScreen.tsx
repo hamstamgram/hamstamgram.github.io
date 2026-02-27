@@ -18,32 +18,22 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '@/app/providers/ThemeProvider';
 import { Text } from '@/components/ui/Text';
 import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { PrivacyValue } from '@/components/ui/PrivacyValue';
+import { getAssetColor } from '@/components/ui/AssetChip';
 import { getPortfolioSummary } from '@/services/portfolio/portfolioService';
-import { formatAmount, formatPercentage, parseAmount } from '@/utils/formatting/currency';
-import type { PortfolioSummary, PositionsByAsset } from '@/types/domains/position';
-
-const ASSET_COLORS: Record<string, string> = {
-  BTC: '#F7931A',
-  ETH: '#627EEA',
-  USDT: '#26A17B',
-  USDC: '#2775CA',
-  SOL: '#9945FF',
-};
-function getAssetColor(symbol: string): string {
-  return ASSET_COLORS[symbol] ?? '#3F51B5';
-}
+import { formatAmount, parseAmount } from '@/utils/formatting/currency';
+import type { PortfolioSummary, FundPosition } from '@/types/domains/position';
 
 type Tab = 'Holdings' | 'Performance';
 
-// ─── Position Card ────────────────────────────────────────────────────────────
+// ─── Fund Card ────────────────────────────────────────────────────────────────
+// One card per fund. Balance shown in native asset. Nothing is converted or merged.
 
-function PositionCard({ asset }: { asset: PositionsByAsset }) {
+function FundCard({ position }: { position: FundPosition }) {
   const { theme } = useTheme();
-  const color = getAssetColor(asset.asset_symbol);
-  const pnl = parseAmount(asset.total_unrealized_pnl);
+  const color = getAssetColor(position.asset_symbol);
+  const pnl = parseAmount(position.unrealized_pnl);
   const pnlPositive = pnl.gte(0);
   const pnlColor = pnlPositive ? theme.success : theme.destructive;
 
@@ -52,25 +42,27 @@ function PositionCard({ asset }: { asset: PositionsByAsset }) {
   return (
     <Card style={styles.positionCard}>
       <View style={styles.positionRow}>
+        {/* Asset icon — colored circle with ticker */}
         <View style={[styles.assetIcon, { backgroundColor: `${color}20` }]}>
           <Text variant="label" style={{ ...styles.assetSymbol, color }}>
-            {asset.asset_symbol}
+            {position.asset_symbol.slice(0, 3)}
           </Text>
         </View>
+
+        {/* Fund name + asset type */}
         <View style={styles.positionInfo}>
-          <Text variant="label">{asset.asset_symbol}</Text>
-          <Text variant="caption" color="muted">
-            {asset.asset_type}
-          </Text>
+          <Text variant="label" numberOfLines={1}>{position.fund_name}</Text>
+          <Text variant="caption" color="muted">{position.asset_symbol} · {position.asset_type}</Text>
         </View>
+
+        {/* Balance in native asset — never converted to USDT */}
         <View style={styles.positionRight}>
           <PrivacyValue
-            value={`${formatAmount(asset.total_value, 'USDT')} USDT`}
+            value={`${formatAmount(position.current_value, position.asset_symbol)} ${position.asset_symbol}`}
             variant="value"
           />
           <Text variant="caption" style={{ ...styles.pnlText, color: pnlColor }}>
-            {pnlPositive ? '+' : ''}
-            {formatAmount(pnl, asset.asset_symbol)} {asset.asset_symbol}
+            {pnlPositive ? '+' : ''}{formatAmount(pnl, position.asset_symbol)} {position.asset_symbol}
           </Text>
         </View>
       </View>
@@ -149,9 +141,7 @@ export function PortfolioScreen() {
 
   const styles = makeStyles(theme);
 
-  const pnlPct = summary ? parseAmount(summary.total_pnl_percentage) : null;
-  const pnlPositive = pnlPct ? pnlPct.gte(0) : true;
-  const totalUnrealizedPnl = summary ? parseAmount(summary.total_unrealized_pnl) : null;
+  const fundPositions = summary?.fund_positions ?? [];
 
   if (loading) {
     return (
@@ -178,9 +168,9 @@ export function PortfolioScreen() {
   return (
     <SafeAreaView style={styles.root}>
       <FlatList
-        data={activeTab === 'Holdings' ? (summary?.positions_by_asset ?? []) : []}
-        keyExtractor={(item) => item.asset_symbol}
-        renderItem={({ item }) => <PositionCard asset={item} />}
+        data={activeTab === 'Holdings' ? fundPositions : []}
+        keyExtractor={(item) => item.fund_id}
+        renderItem={({ item }) => <FundCard position={item} />}
         ListEmptyComponent={activeTab === 'Holdings' ? <EmptyHoldings /> : null}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.primary} />
@@ -189,20 +179,12 @@ export function PortfolioScreen() {
         contentContainerStyle={styles.listContent}
         ListHeaderComponent={
           <View>
-            {/* ── Header ── */}
+            {/* ── Header — no merged total; funds have different assets ── */}
             <View style={styles.header}>
-              <Text variant="h3" style={styles.title}>
-                Portfolio
+              <Text variant="h3" style={styles.title}>Portfolio</Text>
+              <Text variant="caption" color="muted">
+                {fundPositions.length} {fundPositions.length === 1 ? 'fund' : 'funds'} · balances in native asset
               </Text>
-              <PrivacyValue
-                value={`${formatAmount(summary?.total_value, 'USDT')} USDT`}
-                variant="financialLarge"
-              />
-              {pnlPct && (
-                <Badge variant={pnlPositive ? 'success' : 'destructive'} style={styles.pnlBadge}>
-                  {pnlPositive ? '+' : ''}{formatPercentage(pnlPct)} Overall
-                </Badge>
-              )}
             </View>
 
             {/* ── Tabs ── */}
@@ -224,42 +206,59 @@ export function PortfolioScreen() {
               ))}
             </View>
 
-            {/* ── Performance tab content ── */}
-            {activeTab === 'Performance' && summary && (
-              <Card style={styles.performanceCard}>
-                <Text variant="h4" style={styles.performanceTitle}>
-                  Performance Summary
-                </Text>
-                <StatRow
-                  label="Total P&L"
-                  value={`${formatAmount(totalUnrealizedPnl, 'USDT')} USDT`}
-                  positive={pnlPositive}
-                />
-                <View style={styles.statDivider} />
-                <StatRow
-                  label="P&L %"
-                  value={pnlPct ? formatPercentage(pnlPct, { showSign: false }) : '—'}
-                  positive={pnlPositive}
-                />
-                <View style={styles.statDivider} />
-                <StatRow
-                  label="Cost Basis"
-                  value={`${formatAmount(summary.total_cost_basis, 'USDT')} USDT`}
-                  positive={true}
-                />
-                <View style={styles.statDivider} />
-                <StatRow
-                  label="Current Value"
-                  value={`${formatAmount(summary.total_value, 'USDT')} USDT`}
-                  positive={true}
-                />
-              </Card>
+            {/* ── Performance tab — per-fund, native asset ── */}
+            {activeTab === 'Performance' && (
+              fundPositions.length === 0 ? (
+                <Text variant="caption" color="muted" style={{ marginTop: 8 }}>No positions</Text>
+              ) : (
+                fundPositions.map((pos) => {
+                  const pnl = parseAmount(pos.unrealized_pnl);
+                  const basis = parseAmount(pos.cost_basis);
+                  const pnlPositive = pnl.gte(0);
+                  const pnlPct = basis.gt(0)
+                    ? pnl.div(basis).times(100).toFixed(2) + '%'
+                    : '—';
+                  return (
+                    <Card key={pos.fund_id} style={styles.performanceCard}>
+                      <Text variant="h4" style={styles.performanceTitle} numberOfLines={1}>
+                        {pos.fund_name}
+                      </Text>
+                      <Text variant="caption" color="muted" style={{ marginBottom: 8 }}>
+                        {pos.asset_symbol}
+                      </Text>
+                      <StatRow
+                        label="Current Value"
+                        value={`${formatAmount(pos.current_value, pos.asset_symbol)} ${pos.asset_symbol}`}
+                        positive={true}
+                      />
+                      <View style={styles.statDivider} />
+                      <StatRow
+                        label="Cost Basis"
+                        value={`${formatAmount(pos.cost_basis, pos.asset_symbol)} ${pos.asset_symbol}`}
+                        positive={true}
+                      />
+                      <View style={styles.statDivider} />
+                      <StatRow
+                        label="P&L"
+                        value={`${pnlPositive ? '+' : ''}${formatAmount(pnl, pos.asset_symbol)} ${pos.asset_symbol}`}
+                        positive={pnlPositive}
+                      />
+                      <View style={styles.statDivider} />
+                      <StatRow
+                        label="P&L %"
+                        value={pnlPct}
+                        positive={pnlPositive}
+                      />
+                    </Card>
+                  );
+                })
+              )
             )}
 
             {/* ── Holdings section header ── */}
             {activeTab === 'Holdings' && (
               <Text variant="label" color="muted" style={styles.listLabel}>
-                {summary?.positions_by_asset.length ?? 0} assets
+                {fundPositions.length} {fundPositions.length === 1 ? 'fund' : 'funds'}
               </Text>
             )}
           </View>
@@ -292,9 +291,7 @@ function makeStyles(theme: ReturnType<typeof useTheme>['theme']) {
     title: {
       color: theme.text,
     },
-    pnlBadge: {
-      alignSelf: 'flex-start',
-    },
+
     tabBar: {
       flexDirection: 'row',
       borderBottomWidth: StyleSheet.hairlineWidth,

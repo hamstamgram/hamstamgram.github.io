@@ -23,28 +23,17 @@ import { Text } from '@/components/ui/Text';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { LargePrivacyValue, PrivacyValue } from '@/components/ui/PrivacyValue';
+import { PrivacyValue } from '@/components/ui/PrivacyValue';
+import { AssetChip, getAssetColor } from '@/components/ui/AssetChip';
 import { getPortfolioSummary } from '@/services/portfolio/portfolioService';
 import { getRecentActivity } from '@/services/transactions/transactionService';
-import { formatAmount, formatPercentage, parseAmount } from '@/utils/formatting/currency';
+import { formatAmount, parseAmount } from '@/utils/formatting/currency';
 import { formatDate } from '@/utils/formatting/date';
-import type { PortfolioSummary, PositionsByAsset } from '@/types/domains/position';
+import type { PortfolioSummary, FundPosition } from '@/types/domains/position';
 import type { TransactionWithDetails } from '@/types/domains/transaction';
 import type { RootStackParamList } from '@/app/navigation/types';
 
 type NavProp = NativeStackNavigationProp<RootStackParamList>;
-
-const ASSET_COLORS: Record<string, string> = {
-  BTC: '#F7931A',
-  ETH: '#627EEA',
-  USDT: '#26A17B',
-  USDC: '#2775CA',
-  SOL: '#9945FF',
-};
-
-function getAssetColor(symbol: string): string {
-  return ASSET_COLORS[symbol] ?? '#3F51B5';
-}
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -67,13 +56,13 @@ const skeletonStyles = StyleSheet.create({
   },
 });
 
-// ─── Asset card ──────────────────────────────────────────────────────────────
+// ─── Fund card ───────────────────────────────────────────────────────────────
+// One card per fund — each fund has its own asset; balances are NEVER merged.
 
-function AssetCard({ asset }: { asset: PositionsByAsset }) {
+function FundCard({ position }: { position: FundPosition }) {
   const { theme } = useTheme();
-  const color = getAssetColor(asset.asset_symbol);
-  const value = formatAmount(asset.total_value, asset.asset_symbol);
-  const pnl = parseAmount(asset.total_unrealized_pnl);
+  const color = getAssetColor(position.asset_symbol);
+  const pnl = parseAmount(position.unrealized_pnl);
   const pnlPositive = pnl.gte(0);
 
   const styles = makeStyles(theme);
@@ -81,24 +70,31 @@ function AssetCard({ asset }: { asset: PositionsByAsset }) {
   return (
     <Card style={styles.assetCard}>
       <View style={styles.assetRow}>
+        {/* Asset icon */}
         <View style={[styles.assetIcon, { backgroundColor: `${color}20` }]}>
           <Text variant="label" style={{ ...styles.assetSymbol, color }}>
-            {asset.asset_symbol}
+            {position.asset_symbol.slice(0, 3)}
           </Text>
         </View>
+
+        {/* Fund name + asset ticker */}
         <View style={styles.assetInfo}>
-          <Text variant="label" color="muted">
-            {asset.asset_symbol}
-          </Text>
-          <PrivacyValue value={`${value} ${asset.asset_symbol}`} variant="value" />
+          <Text variant="label" numberOfLines={1}>{position.fund_name}</Text>
+          <Text variant="caption" color="muted">{position.asset_symbol}</Text>
         </View>
+
+        {/* Balance in native asset — no USDT conversion */}
         <View style={styles.assetRight}>
+          <PrivacyValue
+            value={`${formatAmount(position.current_value, position.asset_symbol)} ${position.asset_symbol}`}
+            variant="value"
+          />
           <Text
             variant="caption"
-            style={{ ...styles.pnlText, color: pnlPositive ? theme.success : theme.destructive }}
+            style={{ color: pnlPositive ? theme.success : theme.destructive }}
           >
             {pnlPositive ? '+' : ''}
-            {formatAmount(pnl, asset.asset_symbol)} {asset.asset_symbol}
+            {formatAmount(pnl, position.asset_symbol)} {position.asset_symbol}
           </Text>
         </View>
       </View>
@@ -194,9 +190,9 @@ export function DashboardScreen() {
 
   const styles = makeStyles(theme);
 
-  const topAssets = summary?.positions_by_asset.slice(0, 3) ?? [];
-  const pnlPct = summary ? parseAmount(summary.total_pnl_percentage) : null;
-  const pnlPositive = pnlPct ? pnlPct.gte(0) : true;
+  // Per-fund positions — these are the source of truth for display
+  const fundPositions = summary?.fund_positions ?? [];
+  const topFunds = fundPositions.slice(0, 4);
 
   // ── Loading state ────────────────────────────────────────────────────────
   if (loading) {
@@ -242,45 +238,53 @@ export function DashboardScreen() {
           <Badge variant="outline">Accredited</Badge>
         </View>
 
-        {/* ── Hero card ── */}
+        {/* ── Hero card — balances per fund, never merged ── */}
         <Card style={styles.heroCard}>
           <View style={styles.heroTop}>
-            <View>
-              <Text variant="caption" color="muted" style={styles.heroLabel}>
-                Total Portfolio Value
-              </Text>
-              <LargePrivacyValue
-                value={`${formatAmount(summary?.total_value, 'USDT')} USDT`}
-              />
-            </View>
-            <View style={[styles.yieldChip, { backgroundColor: pnlPositive ? `${theme.success}20` : `${theme.destructive}20` }]}>
-              <Ionicons
-                name={pnlPositive ? 'trending-up' : 'trending-down'}
-                size={14}
-                color={pnlPositive ? theme.success : theme.destructive}
-              />
-              <Text
-                variant="caption"
-                style={{ ...styles.yieldChipText, color: pnlPositive ? theme.success : theme.destructive }}
-              >
-                {pnlPct ? formatPercentage(pnlPct, { showSign: true }) : '—'} MTD
-              </Text>
-            </View>
+            <Text variant="caption" color="muted" style={styles.heroLabel}>
+              {fundPositions.length === 1 ? 'Your Fund' : `Your Funds (${fundPositions.length})`}
+            </Text>
+            <Badge variant="outline">Accredited</Badge>
           </View>
-          <View style={styles.heroBadgeRow}>
-            <Badge variant="outline">Invite-Only</Badge>
-            <Badge variant="outline">Accredited Investors</Badge>
-          </View>
+
+          {/* Per-fund balance rows with asset icons */}
+          {topFunds.length === 0 ? (
+            <Text variant="caption" color="muted">No active positions</Text>
+          ) : (
+            topFunds.map((pos) => {
+              const color = getAssetColor(pos.asset_symbol);
+              return (
+                <View key={pos.fund_id} style={styles.heroFundRow}>
+                  <View style={[styles.assetIcon, { backgroundColor: `${color}22`, width: 36, height: 36, borderRadius: 18 }]}>
+                    <Text style={{ ...styles.assetSymbol, color, fontSize: 10 }}>
+                      {pos.asset_symbol.slice(0, 3)}
+                    </Text>
+                  </View>
+                  <View style={{ flex: 1 }}>
+                    <Text variant="caption" color="muted" numberOfLines={1}>{pos.fund_name}</Text>
+                  </View>
+                  <PrivacyValue
+                    value={`${formatAmount(pos.current_value, pos.asset_symbol)} ${pos.asset_symbol}`}
+                    variant="value"
+                  />
+                </View>
+              );
+            })
+          )}
+
+          {fundPositions.length > 4 && (
+            <Text variant="caption" color="muted" style={{ textAlign: 'center' }}>
+              +{fundPositions.length - 4} more in Portfolio
+            </Text>
+          )}
         </Card>
 
-        {/* ── Holdings ── */}
-        {topAssets.length > 0 && (
+        {/* ── Fund holdings ── */}
+        {topFunds.length > 0 && (
           <View style={styles.section}>
-            <Text variant="h4" style={styles.sectionTitle}>
-              Holdings
-            </Text>
-            {topAssets.map((asset) => (
-              <AssetCard key={asset.asset_symbol} asset={asset} />
+            <Text variant="h4" style={styles.sectionTitle}>Holdings</Text>
+            {topFunds.map((pos) => (
+              <FundCard key={pos.fund_id} position={pos} />
             ))}
           </View>
         )}
@@ -362,31 +366,20 @@ function makeStyles(theme: ReturnType<typeof useTheme>['theme']) {
     },
     heroCard: {
       backgroundColor: theme.surface,
-      gap: 16,
+      gap: 14,
     },
     heroTop: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'flex-start',
+      alignItems: 'center',
     },
     heroLabel: {
-      marginBottom: 6,
+      marginBottom: 2,
     },
-    yieldChip: {
+    heroFundRow: {
       flexDirection: 'row',
       alignItems: 'center',
-      gap: 4,
-      paddingHorizontal: 10,
-      paddingVertical: 4,
-      borderRadius: 999,
-    },
-    yieldChipText: {
-      fontWeight: '600',
-      fontSize: 12,
-    },
-    heroBadgeRow: {
-      flexDirection: 'row',
-      gap: 8,
+      gap: 10,
     },
     section: {
       gap: 10,
