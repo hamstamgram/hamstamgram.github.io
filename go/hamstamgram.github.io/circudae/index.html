@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circudae — Web Design, SEO & Website Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0A0A0A;
+            color: #E5E5E5;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Accent color: cyan (#00D9FF) */
+        :root {
+            --accent: #00D9FF;
+            --accent-dark: #A78BFA;
+            --bg: #0A0A0A;
+            --text: #E5E5E5;
+            --text-muted: #A0A0A0;
+            --card-bg: #1A1A1A;
+            --border: #2A2A2A;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        nav .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .hero h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .hero .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: #000;
+            padding: 0.9rem 2.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+
+        .hero .cta-button:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Section Spacing */
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section h2 {
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        section .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* Services */
+        .services {
+            background: var(--bg);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            background: rgba(0, 217, 255, 0.02);
+        }
+
+        .service-card h3 {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Portfolio */
+        .portfolio {
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .case-study {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .case-study-image {
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(167, 139, 250, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .case-study-content {
+            padding: 2rem;
+        }
+
+        .case-study-content h3 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .case-study-content .company {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .metrics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric {
+            background: rgba(0, 217, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Process */
+        .process {
+            background: var(--bg);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: #000;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: var(--bg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            background: rgba(0, 217, 255, 0.05);
+            transform: scale(1.05);
+        }
+
+        .price-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .features li {
+            padding: 0.7rem 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features li:before {
+            content: "✓ ";
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .price-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent);
+            color: #000;
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .price-card.featured .price-cta {
+            background: var(--accent);
+        }
+
+        .price-cta:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* FAQ */
+        .faq {
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .faq-container {
+            max-width: 700px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .faq-question h4 {
+            font-size: 1rem;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .faq-icon {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 217, 255, 0.03);
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%);
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 3rem auto 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent);
+            color: #000;
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem 1rem;
+            color: var(--text-muted);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--text);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin: 0.5rem 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .services-grid,
+            .portfolio-grid,
+            .process-steps,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .hero .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Circu<span>dae</span></div>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Work</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="tagline">Beautiful Websites. Ranking. Managed.</div>
+            <h1>Websites That <span class="accent">Work For You</span></h1>
+            <p>You need a website that attracts clients AND ranks in Google. We design beautiful sites, optimize for search, and manage them so you don't have to.</p>
+            <a href="#contact" class="cta-button">Start Your Website</a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <p class="subtitle">Everything you need for a web presence that converts</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🎨 Web Design</h3>
+                    <p>Custom, modern websites built for conversions. We create beautiful, fast-loading sites that reflect your brand and turn visitors into clients.</p>
+                </div>
+                <div class="service-card">
+                    <h3>🔍 SEO Optimization</h3>
+                    <p>Technical SEO, on-page optimization, and content strategy to help you rank higher in Google. We handle the search engine part so you get the leads.</p>
+                </div>
+                <div class="service-card">
+                    <h3>📊 Ongoing Management</h3>
+                    <p>Monthly updates, analytics tracking, and continuous improvements. Your website stays current, secure, and growing without you lifting a finger.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Recent Work</h2>
+            <p class="subtitle">Trusted by 50+ SMBs and small teams</p>
+            <div class="portfolio-grid">
+                <div class="case-study">
+                    <div class="case-study-image">🏢</div>
+                    <div class="case-study-content">
+                        <div class="company">Consulting Firm</div>
+                        <h3>Lead Generation Redesign</h3>
+                        <p>Transformed outdated site into a conversion machine with clear CTAs and compelling service pages.</p>
+                        <div class="metrics">
+                            <div class="metric">+340% leads</div>
+                            <div class="metric">Rank #1 (4 keywords)</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-study-image">🏥</div>
+                    <div class="case-study-content">
+                        <div class="company">Healthcare Provider</div>
+                        <h3>Patient Booking Website</h3>
+                        <p>Built appointment system integrated with their calendar. Reduced admin load by 60%.</p>
+                        <div class="metrics">
+                            <div class="metric">+220% bookings</div>
+                            <div class="metric">Mobile first</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="case-study">
+                    <div class="case-study-image">🛍️</div>
+                    <div class="case-study-content">
+                        <div class="company">Local E-Commerce</div>
+                        <h3>Shop & SEO Launch</h3>
+                        <p>Designed shop from scratch with SEO fundamentals built in. Now ranking for 50+ product keywords.</p>
+                        <div class="metrics">
+                            <div class="metric">+580% traffic</div>
+                            <div class="metric">Page 1 rankings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2>Our Process</h2>
+            <p class="subtitle">4 simple steps from idea to growth</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>We understand your business, goals, competitors, and target audience. No assumptions, just strategy.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Design & Build</h3>
+                    <p>Beautiful, fast website coded to perfection. Mobile-first, conversion-focused, SEO-ready from day one.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Launch & Optimize</h3>
+                    <p>Technical SEO setup, Google Search Console, analytics integration, and performance testing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Monthly Growth</h3>
+                    <p>Analytics review, content updates, rank monitoring, and continuous improvements to drive results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Client Love</h2>
+            <p class="subtitle">Real feedback from real businesses</p>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">"Circudae took our online presence from non-existent to professional. Within 3 months, we were ranking for our target keywords. The team is responsive and actually understands our business."</div>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Sarah Chen</span>
+                        <span class="testimonial-role">Founder, Chen Consulting</span>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">"We tried DIY website builders before. Circudae's design is clean, modern, and our conversion rate jumped 45% in the first month. Best investment we made for the business."</div>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Marcus Rodriguez</span>
+                        <span class="testimonial-role">CEO, Rodriguez Legal</span>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">"Not having to worry about technical SEO is a game-changer. They handle all the updates and optimizations. I focus on the business, they handle the web presence."</div>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">Emma Kraft</span>
+                        <span class="testimonial-role">Director, Kraft Digital Agency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Simple Pricing</h2>
+            <p class="subtitle">No surprises, no hidden fees</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">$2,500</div>
+                    <div class="price-period">one-time</div>
+                    <ul class="features">
+                        <li>5-page website</li>
+                        <li>Mobile responsive</li>
+                        <li>SSL certificate</li>
+                        <li>Contact form</li>
+                        <li>1 month support</li>
+                    </ul>
+                    <button class="price-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                </div>
+                <div class="price-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$5,500</div>
+                    <div class="price-period">one-time + $299/mo</div>
+                    <ul class="features">
+                        <li>10-page website</li>
+                        <li>SEO optimization</li>
+                        <li>Blog setup</li>
+                        <li>Google Analytics</li>
+                        <li>Monthly management</li>
+                        <li>Content updates</li>
+                    </ul>
+                    <button class="price-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <div class="price-period">let's talk</div>
+                    <ul class="features">
+                        <li>Unlimited pages</li>
+                        <li>E-commerce integration</li>
+                        <li>Advanced SEO</li>
+                        <li>Custom integrations</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <button class="price-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2>Frequently Asked</h2>
+            <p class="subtitle">Common questions answered</p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>How long does a website take to build?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Typically 4-6 weeks for a standard website. We start with discovery and strategy, then move into design and development. Complex projects with custom features may take longer. We keep you updated every step of the way.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Do you handle hosting?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes. We set up and manage fast, secure hosting on your behalf. It's included in the package. You don't need to worry about server management, backups, or security updates.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>What's included in ongoing management?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Content updates, security patches, performance monitoring, analytics review, and rank tracking. We also provide recommendations for improvements based on your data. It's designed to keep your website fresh and effective.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Can you migrate my existing website?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We can migrate your content, preserve your SEO rankings, and improve the design at the same time. Migration is included in our project scope with no additional cost.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Will my website rank in Google?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We build SEO into every site from day one. On-page optimization, technical SEO, and content strategy are core. Ranking depends on competition and effort, but our track record speaks for itself. Most clients see results within 3-6 months.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Talk</h2>
+            <p class="subtitle">Ready to build your web presence?</p>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell us about your project</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Web Design</a></li>
+                    <li><a href="#services">SEO Optimization</a></li>
+                    <li><a href="#services">Website Management</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#portfolio">Our Work</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#contact">Get in Touch</a></li>
+                    <li><a href="mailto:hello@circudae.com">hello@circudae.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Circudae. Web Design + SEO + Management.</p>
+            <p>Beautiful websites. Ranking. Managed.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
+
+        // Contact Form Handler
+        function handleSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const message = document.getElementById('message').value;
+            
+            // Fallback: Open email client
+            const subject = `Website Inquiry from ${name}`;
+            const body = `Name: ${name}%0DEmail: ${email}%0DCompany: ${company}%0D%0DMessage:%0D${message}`;
+            window.location.href = `mailto:hello@circudae.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            
+            // Reset form
+            document.querySelector('.contact-form').reset();
+        }
+    </script>
+</body>
+</html>
