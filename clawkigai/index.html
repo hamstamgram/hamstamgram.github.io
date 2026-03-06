@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClawKigai - Autonomous AI Agents for Business</title>
-    <meta name="description" content="Deploy autonomous AI agents that work 24/7 for your business. Automate sales, support, operations, and revenue growth without the engineering overhead.">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="ClawKigai - Autonomous AI agents that ship. Deploy agents that work 24/7 on research, design, code, and operations.">
+    <meta name="theme-color" content="#0F0F0F">
+    <title>ClawKigai - Autonomous AI Agents That Ship</title>
     <style>
         * {
             margin: 0;
@@ -15,211 +13,255 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #1A1A1A;
-            color: #E0E0E0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0F0F0F;
+            color: #E8E8E8;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Header / Navigation */
-        header {
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(8px);
+            width: 100%;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
         }
 
-        nav {
-            max-width: 1400px;
+        nav .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-family: 'Poppins', sans-serif;
+        nav .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #B0B0B0;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
             color: #00D9FF;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: #E8E8E8;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav .nav-links a:hover {
+            color: #00D9FF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         /* Hero Section */
         .hero {
             margin-top: 80px;
-            min-height: 100vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1a1a2e 50%, #0F0F0F 100%);
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -40%;
-            right: -20%;
             width: 600px;
             height: 600px;
             background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(40px);
-            pointer-events: none;
+            top: -200px;
+            right: -200px;
+            animation: float 6s ease-in-out infinite;
         }
 
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -30%;
-            left: -15%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 153, 204, 0.1) 0%, transparent 70%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
             border-radius: 50%;
-            filter: blur(40px);
-            pointer-events: none;
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 30px); }
         }
 
         .hero-content {
-            max-width: 900px;
-            text-align: center;
             position: relative;
-            z-index: 1;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #E8E8E8, #00D9FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero-subhead {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: #A0A0A0;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+        .tagline {
+            color: #00D9FF;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #B0B0B0;
+            margin-bottom: 2rem;
+            line-height: 1.8;
         }
 
         .cta-group {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 4rem;
         }
 
-        .cta-primary {
-            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
-            color: #1A1A1A;
-            padding: 1rem 2.5rem;
+        .btn {
+            padding: 0.875rem 2rem;
             border: none;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
+            border-radius: 6px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+            text-align: center;
+            letter-spacing: 0.5px;
         }
 
-        .cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+        .btn-primary {
+            background: linear-gradient(135deg, #00D9FF, #00A8CC);
+            color: #0F0F0F;
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
         }
 
-        .cta-secondary {
+        .btn-primary:hover {
+            box-shadow: 0 12px 32px rgba(0, 217, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
             background: transparent;
             color: #00D9FF;
-            padding: 1rem 2.5rem;
             border: 2px solid #00D9FF;
-            border-radius: 8px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
         }
 
-        .cta-secondary:hover {
+        .btn-secondary:hover {
             background: rgba(0, 217, 255, 0.1);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 6rem 2rem;
+            background: #0F0F0F;
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .problem .container {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .section-label {
+            color: #00D9FF;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #E8E8E8;
+        }
+
+        .problem p {
+            font-size: 1.1rem;
+            color: #B0B0B0;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: #00D9FF;
+            font-weight: 600;
         }
 
         /* Features Section */
         .features {
-            max-width: 1400px;
-            margin: 6rem auto;
-            padding: 0 2rem;
+            padding: 6rem 2rem;
+            background: #0F0F0F;
         }
 
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
+        .features .container {
+            max-width: 1200px;
+        }
+
+        .section-header {
             text-align: center;
-            margin-bottom: 3rem;
-            letter-spacing: -0.01em;
+            margin-bottom: 4rem;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            margin-bottom: 6rem;
+            margin-bottom: 3rem;
         }
 
         .feature-card {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(26, 26, 26, 0.5) 100%);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(0, 217, 255, 0.02));
             border: 1px solid rgba(0, 217, 255, 0.2);
             border-radius: 12px;
             padding: 2.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
         }
@@ -230,130 +272,75 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #00D9FF, #0099CC, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00D9FF, transparent);
         }
 
         .feature-card:hover {
             border-color: rgba(0, 217, 255, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.1);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
+            box-shadow: 0 12px 40px rgba(0, 217, 255, 0.15);
+            transform: translateY(-4px);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-        }
-
-        .feature-card p {
-            color: #A0A0A0;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Value Pillars */
-        .pillars {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-        }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-bottom: 6rem;
-        }
-
-        .pillar {
-            text-align: left;
-        }
-
-        .pillar-number {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #00D9FF 0%, #0099CC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .pillar h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-        }
-
-        .pillar p {
-            color: #A0A0A0;
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        /* Demo / Product Section */
-        .demo-section {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, rgba(0, 153, 204, 0.05) 100%);
-            border: 1px solid rgba(0, 217, 255, 0.15);
-            border-radius: 16px;
-            padding: 4rem 3rem;
-            text-align: center;
-        }
-
-        .demo-section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #FFFFFF;
-        }
-
-        .demo-section p {
-            color: #A0A0A0;
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
-
-        .demo-video {
-            width: 100%;
-            max-width: 800px;
-            height: 450px;
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 153, 204, 0.1));
-            border: 2px solid rgba(0, 217, 255, 0.2);
-            border-radius: 12px;
-            margin: 2rem auto;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #00D9FF, #00A8CC);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            color: rgba(0, 217, 255, 0.3);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #0F0F0F;
         }
 
-        /* Social Proof / Testimonials */
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #E8E8E8;
+        }
+
+        .feature-card p {
+            color: #B0B0B0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(0, 217, 255, 0.02));
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .solution .container {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .solution-highlight {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(0, 217, 255, 0.05));
+            border-left: 3px solid #00D9FF;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .solution-highlight p {
+            font-size: 1.2rem;
+            color: #E8E8E8;
+            font-weight: 500;
+        }
+
+        /* Testimonials */
         .testimonials {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
+            padding: 6rem 2rem;
+            background: #0F0F0F;
+        }
+
+        .testimonials .container {
+            max-width: 1200px;
         }
 
         .testimonials-grid {
@@ -363,379 +350,509 @@
         }
 
         .testimonial-card {
-            background: rgba(0, 217, 255, 0.05);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(0, 217, 255, 0.03));
             border: 1px solid rgba(0, 217, 255, 0.15);
             border-radius: 12px;
             padding: 2rem;
             position: relative;
         }
 
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            font-size: 3rem;
-            color: rgba(0, 217, 255, 0.2);
-            font-family: 'Poppins', sans-serif;
+        .quote-mark {
+            font-size: 2.5rem;
+            color: rgba(0, 217, 255, 0.3);
+            margin-bottom: 0.5rem;
         }
 
-        .testimonial-text {
+        .testimonial-card p {
             color: #B0B0B0;
             margin-bottom: 1.5rem;
             font-style: italic;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .testimonial-author {
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
 
-        .testimonial-role {
-            font-size: 0.85rem;
-            color: #00D9FF;
-        }
-
-        /* CTA Section */
-        .final-cta {
-            max-width: 900px;
-            margin: 8rem auto;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .final-cta h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #00D9FF, #00A8CC);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0F0F0F;
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #FFFFFF;
+            font-size: 1.2rem;
         }
 
-        .final-cta p {
-            color: #A0A0A0;
-            margin-bottom: 2rem;
+        .author-info h4 {
+            color: #E8E8E8;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: #00D9FF;
+            font-size: 0.85rem;
+            font-style: normal;
+            margin: 0;
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.03), transparent);
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .trust p {
+            color: #B0B0B0;
             font-size: 1.1rem;
+        }
+
+        .trust-badge {
+            display: inline-block;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            margin: 1rem 0;
+            color: #00D9FF;
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 2rem;
+            background: #0F0F0F;
+        }
+
+        .faq .container {
+            max-width: 800px;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(0, 217, 255, 0.02));
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, rgba(0, 217, 255, 0.05), transparent);
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(90deg, rgba(0, 217, 255, 0.1), transparent);
+        }
+
+        .faq-question h3 {
+            font-size: 1.1rem;
+            color: #E8E8E8;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            color: #00D9FF;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            color: #B0B0B0;
+            line-height: 1.8;
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.5);
+            background: #050505;
             border-top: 1px solid rgba(0, 217, 255, 0.1);
-            margin-top: 6rem;
-            padding: 3rem 2rem;
+            padding: 3rem 2rem 2rem;
         }
 
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
+        footer .container {
+            max-width: 1200px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .footer-column h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
+        footer h4 {
+            color: #E8E8E8;
             margin-bottom: 1rem;
-            color: #FFFFFF;
+            font-size: 1.1rem;
         }
 
-        .footer-column a {
-            display: block;
-            color: #A0A0A0;
+        footer a {
+            color: #B0B0B0;
             text-decoration: none;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            transition: color 0.2s;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s;
         }
 
-        .footer-column a:hover {
+        footer a:hover {
             color: #00D9FF;
         }
 
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
+        footer .copyright {
+            text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(0, 217, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: #707070;
+            color: #666;
+            font-size: 0.9rem;
         }
 
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            nav ul {
+            nav .nav-links {
                 gap: 1rem;
-            }
-
-            nav a {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
             }
 
             .hero {
-                padding: 2rem 1.5rem;
-                min-height: auto;
+                min-height: 70vh;
                 margin-top: 60px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
             }
 
             .cta-group {
                 flex-direction: column;
-                gap: 1rem;
             }
 
-            .cta-primary, .cta-secondary {
+            .btn {
                 width: 100%;
             }
 
-            .features-grid {
+            .problem,
+            .solution,
+            .features,
+            .testimonials,
+            .faq {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .features-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .demo-video {
-                height: 300px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
             }
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.75rem 1rem;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+
+            nav .logo {
+                font-size: 1.2rem;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.95rem;
             }
         }
-
-        .hero-content {
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        .feature-card {
-            animation: fadeIn 0.6s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">ClawKigai</div>
-            <ul>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">ClawKigai</a>
+            <ul class="nav-links">
                 <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact" class="cta-primary">Get Started</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#deploy">Deploy</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>
-                Deploy <span class="highlight">Autonomous AI Agents</span>
-                <br>That Grow Your Business
-            </h1>
-            <p class="hero-subhead">
-                Work 24/7 without hiring. Automate sales, support, operations, and revenue growth. 
-                Deploy in minutes, not months.
-            </p>
+            <div class="tagline">Autonomous agents that ship</div>
+            <h1>Meet Your Autonomous Workforce</h1>
+            <p>Building products is slow. Your team is bottlenecked. ClawKigai deploys autonomous agents that work 24/7. Research, design, code, operations — delegated, not deferred.</p>
             <div class="cta-group">
-                <button class="cta-primary">Start Free Trial</button>
-                <button class="cta-secondary">Watch Demo</button>
+                <button class="btn btn-primary" onclick="document.getElementById('deploy').scrollIntoView({behavior: 'smooth'})">Deploy Agents Now</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})">Request Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-label">The Challenge</div>
+            <h2 class="section-title">Bottlenecks Kill Velocity</h2>
+            <p>Your team is <span class="highlight">context switching</span> between meetings, Slack, and actual work. Deadlines slip. Ship cycles stretch. The gap between what you want to build and what ships widens every quarter.</p>
+            <p>You need <span class="highlight">autonomous execution</span> — agents that don't ask permission, don't sleep, and ship real output every day.</p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="section-label">The Solution</div>
+            <h2 class="section-title">Delegate. Not Defer.</h2>
+            <div class="solution-highlight">
+                <p><span class="highlight">ClawKigai</span> deploys autonomous agents that execute across your entire operation. Real work. Real results. 24/7.</p>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
-        <h2 class="section-title">What You Can Automate</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🤖</div>
-                <h3>Sales Automation</h3>
-                <p>AI agents that qualify leads, book meetings, and nurture prospects 24/7 without human intervention.</p>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Capabilities</div>
+                <h2 class="section-title">Autonomous Execution Across the Stack</h2>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💬</div>
-                <h3>Customer Support</h3>
-                <p>Intelligent agents that handle support tickets, answer FAQs, and escalate complex issues instantly.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Operations & Data</h3>
-                <p>Automate data entry, report generation, compliance checks, and process optimization across your stack.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Revenue Growth</h3>
-                <p>Deploy agents that identify upsell opportunities, manage renewals, and maximize customer lifetime value.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Value Pillars -->
-    <section class="pillars" id="how-it-works">
-        <h2 class="section-title">Why ClawKigai</h2>
-        <div class="pillars-grid">
-            <div class="pillar">
-                <div class="pillar-number">1</div>
-                <h3>Deploy in Minutes</h3>
-                <p>No engineering required. Connect your tools, define workflows, and your agents are live. Instant automation without technical overhead.</p>
-            </div>
-            <div class="pillar">
-                <div class="pillar-number">2</div>
-                <h3>Works 24/7</h3>
-                <p>Your agents never sleep. Qualify leads at 3am, support customers on weekends, process data while you scale without additional staff.</p>
-            </div>
-            <div class="pillar">
-                <div class="pillar-number">3</div>
-                <h3>Measurable ROI</h3>
-                <p>Every agent tracks metrics. See leads qualified, revenue influenced, hours saved. Pay for results, not complexity.</p>
-            </div>
-            <div class="pillar">
-                <div class="pillar-number">4</div>
-                <h3>Enterprise Security</h3>
-                <p>Compliance-first architecture. GDPR, SOC2, data encryption. Your customers' data is protected like it's our own.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Autonomous Execution</h3>
+                    <p>Agents ship faster. No context switching. No approval loops. Your team focuses on strategy. Agents handle execution.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Real Work, Not Simulation</h3>
+                    <p>Research, design, code, operations. Agents don't fake output. Every deliverable is production-ready. Every day.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Cost Scales, Time Doesn't</h3>
+                    <p>Deploy 10 agents for less than 1 person's salary. Your costs stay flat. Your capacity scales. Your shipping speed multiplies.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Demo Section -->
-    <section class="demo-section">
-        <h2>See It In Action</h2>
-        <p>Watch how ClawKigai agents automate a month's worth of work in minutes.</p>
-        <div class="demo-video">▶</div>
-    </section>
-
-    <!-- Testimonials -->
+    <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
-        <h2 class="section-title">Loved by Teams</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <p class="testimonial-text">
-                    "We deployed a sales agent and it qualified 200 leads in the first week. That alone paid for the platform."
-                </p>
-                <div class="testimonial-author">Sarah Chen</div>
-                <div class="testimonial-role">VP Sales, TechScale</div>
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Real Results</div>
+                <h2 class="section-title">Trusted by Builders</h2>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">
-                    "Cut our support response time by 80%. Customers don't even know they're talking to an AI."
-                </p>
-                <div class="testimonial-author">Marcus Rodriguez</div>
-                <div class="testimonial-role">Operations Lead, DigitalFirst</div>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">
-                    "Automated 15 hours of manual data work per week. Our team finally has time for strategy."
-                </p>
-                <div class="testimonial-author">Elena Volkova</div>
-                <div class="testimonial-role">Finance Manager, GrowthOps</div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p>We deployed 3 ClawKigai agents on our API documentation. They shipped 4 months of work in 2 weeks. No context switching. No meetings. Just output.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Founder, DevTools Startup</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p>ClawKigai agents run our content pipeline. 50 pieces a month. Zero humans touching the approval loop. We cut costs 60% and ship faster.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Marcus Rivera</h4>
+                            <p>Marketing Lead, SaaS Scale-up</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p>Our QA cycles were killing velocity. ClawKigai agents automated testing, bug triage, and release coordination. Now we ship weekly instead of monthly.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>James Kumar</h4>
+                            <p>CTO, Enterprise Platform</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta" id="contact">
-        <h2>Ready to Transform Your Business?</h2>
-        <p>Join teams that are automating work and accelerating growth with autonomous AI.</p>
-        <button class="cta-primary">Start Your Free Trial</button>
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container">
+            <p>Used by Y Combinator-backed founders, Series A teams, and shipping-obsessed builders.</p>
+            <div class="trust-badge">✓ Autonomous. Reliable. Production-Ready.</div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Questions</div>
+                <h2 class="section-title">Frequently Asked</h2>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <h3>How long does it take to deploy an agent?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most customers deploy their first agent in 24-48 hours. We handle onboarding, context setup, and initial calibration. Your team focuses on what agents should do. We handle how they do it.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <h3>What types of work can agents handle?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Anything that requires systematic execution across hours or days. Research, content creation, code generation, QA automation, operations, design iteration, data analysis, report generation, customer support triage, and more. Agents excel where repetition, scale, and tireless focus matter.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <h3>How much does it cost?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Pricing is per-agent-per-month, scales with compute usage. Most teams deploy 3-5 agents and see ROI in the first 30 days. We offer flexible plans, volume discounts, and custom enterprise agreements. Request a demo for a customized quote.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <h3>Do agents integrate with our existing tools?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. Agents connect to your existing stack via APIs, webhooks, and integrations. GitHub, Slack, Notion, Supabase, custom databases — if it has an API, agents can integrate. Our integration team ensures seamless setup.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+                    <h3>What happens if an agent makes a mistake?</h3>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Agents are monitored continuously. Output is staged before production. Critical workflows have human checkpoints. You control the confidence threshold for autonomous action. High-risk operations stay human-reviewed. You set the rules. Agents follow them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="hero" id="deploy" style="margin-top: 0; min-height: 60vh; padding: 4rem 2rem;">
+        <div class="hero-content">
+            <h2 style="font-size: clamp(2rem, 6vw, 3rem); margin-bottom: 1rem;">Ready to Ship Faster?</h2>
+            <p style="font-size: 1.05rem; margin-bottom: 2rem;">Deploy your first autonomous agent today.</p>
+            <div class="cta-group">
+                <button class="btn btn-primary" id="demo" onclick="alert('Demo request feature coming soon. Contact us at hello@clawkigai.com')">Request Demo</button>
+                <button class="btn btn-secondary" onclick="alert('Deployment workflow coming soon. Contact us at hello@clawkigai.com')">Deploy Now</button>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-column">
+        <div class="container">
+            <div>
+                <h4>ClawKigai</h4>
+                <p style="color: #B0B0B0; margin-bottom: 1rem;">Autonomous agents that ship. Real work. 24/7.</p>
+            </div>
+            <div>
                 <h4>Product</h4>
                 <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#docs">Documentation</a>
-                <a href="#changelog">Changelog</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#faq">FAQ</a>
             </div>
-            <div class="footer-column">
+            <div>
                 <h4>Company</h4>
-                <a href="#about">About</a>
-                <a href="#blog">Blog</a>
-                <a href="#careers">Careers</a>
-                <a href="#press">Press</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
             </div>
-            <div class="footer-column">
+            <div>
                 <h4>Legal</h4>
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
-                <a href="#security">Security</a>
-                <a href="#compliance">Compliance</a>
-            </div>
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <a href="https://twitter.com/clawkigai" target="_blank">Twitter</a>
-                <a href="https://linkedin.com/company/clawkigai" target="_blank">LinkedIn</a>
-                <a href="https://discord.gg/clawkigai" target="_blank">Discord</a>
-                <a href="mailto:hello@clawkigai.ai">Email</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <span>&copy; 2026 ClawKigai. All rights reserved.</span>
-            <span>🇵🇹 Built in Lisbon | 🤖 Powered by Autonomous AI</span>
+        <div class="copyright">
+            <p>&copy; 2026 ClawKigai. All rights reserved. Autonomous agents that ship.</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for internal links
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
-        // Simple scroll animation trigger
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .pillar, .testimonial-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
+        // Initialize FAQ items
+        document.querySelectorAll('.faq-item').forEach((item, index) => {
+            if (index === 0) {
+                item.classList.add('active');
+            }
         });
     </script>
 </body>
