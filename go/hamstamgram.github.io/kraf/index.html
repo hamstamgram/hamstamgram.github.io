@@ -391,13 +391,15 @@
       50% { transform: scaleY(0.5); opacity: 0.1; }
     }
 
-    /* Hero background gradient */
+    /* Hero background video + gradient overlay */
     .hero-bg {
       position: absolute;
       inset: 0;
+      overflow: hidden;
       background: radial-gradient(ellipse at 80% 20%, rgba(113,70,242,0.15) 0%, transparent 60%),
                   radial-gradient(ellipse at 20% 80%, rgba(255,131,255,0.08) 0%, transparent 50%);
       pointer-events: none;
+      z-index: 0;
     }
 
     /* ===========================
@@ -707,7 +709,7 @@
     /* Gradient placeholder images */
     .proj-img-1 { 
       aspect-ratio: 16/10;
-      background: #0a0a0f;
+      background: #0a0a0f url('assets/project-1.png') center/cover no-repeat;
       position: relative;
       overflow: hidden;
     }
@@ -715,10 +717,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse 70% 50% at 30% 60%, rgba(113,70,242,0.3) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,131,255,0.15) 0%, transparent 60%),
-        linear-gradient(180deg, #0a0a0f 0%, #12082a 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 100%);
     }
     .proj-img-1::after {
       content: 'AELIUS';
@@ -728,12 +727,12 @@
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4);
     }
 
     .proj-img-2 { 
       aspect-ratio: 16/10;
-      background: #050d08;
+      background: #050d08 url('assets/project-2.webp') center/cover no-repeat;
       position: relative;
       overflow: hidden;
     }
@@ -741,10 +740,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(40,160,80,0.25) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(20,100,50,0.2) 0%, transparent 60%),
-        linear-gradient(135deg, #050d08 0%, #081a10 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 100%);
     }
     .proj-img-2::after {
       content: 'VERDANT';
@@ -754,12 +750,12 @@
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4);
     }
 
     .proj-img-3 { 
       aspect-ratio: 16/10;
-      background: #0f0805;
+      background: #0f0805 url('assets/project-3.jpg') center/cover no-repeat;
       position: relative;
       overflow: hidden;
     }
@@ -767,10 +763,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(220,120,40,0.2) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 40% at 10% 20%, rgba(200,80,20,0.15) 0%, transparent 60%),
-        linear-gradient(180deg, #0f0805 0%, #1a0e06 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 100%);
     }
     .proj-img-3::after {
       content: 'MAISON';
@@ -780,12 +773,12 @@
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4);
     }
 
     .proj-img-4 { 
       aspect-ratio: 16/10;
-      background: #050810;
+      background: #050810 url('assets/project-4.jpg') center/cover no-repeat;
       position: relative;
       overflow: hidden;
     }
@@ -793,10 +786,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: 
-        radial-gradient(ellipse 60% 70% at 20% 50%, rgba(30,100,220,0.25) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 40% at 90% 30%, rgba(60,150,255,0.15) 0%, transparent 60%),
-        linear-gradient(180deg, #050810 0%, #080d1e 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 100%);
     }
     .proj-img-4::after {
       content: 'SYNTRA';
@@ -806,7 +796,7 @@
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4);
     }
 
     .project-overlay {
@@ -1501,7 +1491,11 @@
        HERO
   =========================== -->
   <section class="hero" id="home">
-    <div class="hero-bg"></div>
+    <div class="hero-bg">
+      <video autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;z-index:0;">
+        <source src="assets/reel.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-content">
       <p class="hero-label">Web Design &amp; Branding — Lisbon / London</p>
       <h1 class="hero-heading">
