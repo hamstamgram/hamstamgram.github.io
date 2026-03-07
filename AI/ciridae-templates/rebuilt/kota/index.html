@@ -1016,16 +1016,21 @@
       </div>
       <div class="partners-logos">
         <div class="partners-logos-inner">
-          <div class="partner-logo"><span>Stripe</span></div>
-          <div class="partner-logo"><span>Hubspot</span></div>
-          <div class="partner-logo"><span>Vercel</span></div>
-          <div class="partner-logo"><span>Notion</span></div>
-          <div class="partner-logo"><span>Figma</span></div>
-          <div class="partner-logo"><span>Linear</span></div>
-          <div class="partner-logo"><span>Framer</span></div>
-          <div class="partner-logo"><span>Webflow</span></div>
-          <div class="partner-logo"><span>Shopify</span></div>
-          <div class="partner-logo"><span>AWS</span></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/Jamie-oliver.svg" alt="Jamie Oliver" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/comptoir-libanais-1.svg" alt="Comptoir Libanais" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/british-red-cross.svg" alt="British Red Cross" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/sym.svg" alt="SYM" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/penguin.svg" alt="Penguin" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/raw.svg" alt="RAW" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/penhaligons.svg" alt="Penhaligon's" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/stoli.svg" alt="Stoli" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/bounce.svg" alt="Bounce" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/tangerine.svg" alt="Tangerine" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/tribepad.svg" alt="Tribepad" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/matchroom.svg" alt="Matchroom" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/diageo.svg" alt="Diageo" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/sonovate.svg" alt="Sonovate" /></div>
+          <div class="partner-logo"><img src="https://kota-content.b-cdn.net/app/uploads/2023/10/saatchi.svg" alt="Saatchi" /></div>
         </div>
       </div>
     </div>
@@ -1800,6 +1805,37 @@
     // ─── RESIZE: refresh ScrollTrigger ───────────────────────────────
     window.addEventListener('resize', () => { ScrollTrigger.refresh(); });
 
+    // ─── FLOATING START BUTTON ────────────────────────────────────────
+    // Show after scroll past hero
+    const floatBtn = document.getElementById('floatingStartBtn');
+    /* Element is injected below in HTML — the JS just controls visibility */
+    if (floatBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight * 0.8) {
+          floatBtn.style.opacity = '1';
+          floatBtn.style.pointerEvents = 'auto';
+        } else {
+          floatBtn.style.opacity = '0';
+          floatBtn.style.pointerEvents = 'none';
+        }
+      });
+    }
+
   </script>
+
+  <!-- ══════════════════════════════════════ FLOATING START BUTTON -->
+  <a id="floatingStartBtn" href="#contact" aria-label="Start your project" style="
+    position:fixed;bottom:2rem;right:2rem;z-index:999;
+    display:flex;align-items:center;gap:.625rem;
+    background:#000;color:#fff;
+    font-family:var(--montreal);font-size:.875rem;font-weight:500;
+    padding:.75rem 1.25rem;border-radius:6.25rem;
+    opacity:0;pointer-events:none;
+    transition:opacity .4s cubic-bezier(0.75,0,0.25,1), background .2s;
+    text-decoration:none;white-space:nowrap;">
+    Start your project
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.1 15.17" style="width:1rem;height:1rem;fill:currentColor;"><path d="m17.1,7.58s-.01-.04-.01-.06c.01-.22-.06-.45-.24-.61L9.23.19c-.31-.27-.78-.24-1.06.07-.27.31-.24.78.07,1.06l6.26,5.52H.75c-.41,0-.75.34-.75.75s.34.75.75.75h13.74l-6.26,5.52c-.31.27-.34.75-.07,1.06.15.17.35.25.56.25.18,0,.35-.06.5-.19l7.62-6.72c.18-.16.25-.39.24-.61,0-.02.01-.04.01-.06Z"/></svg>
+  </a>
+
 </body>
 </html>
