@@ -354,6 +354,19 @@
     .faq-a div{font-size:1.25rem;}
     .faq-a p{line-height:1.33;color:#fff;}
 
+    /* ─── PERKS / WHY US ────────────────────────────────────────── */
+    .perks-section{background:var(--bg);padding:7rem 0 9rem;z-index:2;}
+    .perks-heading{grid-column:span 12;font-size:clamp(3rem,7.1vw,7.5rem);font-weight:400;line-height:1;letter-spacing:calc(-20em/1000);margin:0 0 4rem;}
+    .perks-grid{grid-column:span 12;display:grid;gap:1.5rem;}
+    @media(min-width:600px){.perks-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(min-width:1024px){.perks-grid{grid-template-columns:repeat(3,1fr);}}
+    .perk-card{background:#fff;border-radius:1.25rem;padding:2.5rem;display:flex;flex-direction:column;gap:1rem;transition:transform .35s var(--ease-kota),box-shadow .35s var(--ease-kota);}
+    .perk-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.08);}
+    .perk-icon{width:2.5rem;height:2.5rem;color:#000;}
+    .perk-icon svg{width:100%;height:100%;}
+    .perk-title{font-size:var(--fs-32);font-weight:400;line-height:1.1;letter-spacing:calc(-20em/1000);margin:0;}
+    .perk-desc{font-size:1.125rem;line-height:1.4;color:rgba(0,0,0,.6);margin:0;}
+
     /* ─── LARGE CTA ──────────────────────────────────────────────── */
     .large-cta{display:flex;align-items:center;background:#000;color:#fff;width:100%;overflow:hidden;padding:3rem 0;z-index:6;}
     @media(min-width:769px){.large-cta{padding:10rem 0;}}
@@ -380,14 +393,44 @@
     .circle-btn-text em{font-style:normal;}
     .circle-btn-text em::after{content:"";position:absolute;width:100%;left:0;right:0;height:1em;bottom:-.9em;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 172.97 10.41'%3E%3Cpath d='m.27%2C10.41l-.27-2.99c1.26-.11%2C126.69-11.29%2C172.97-6l-.34%2C2.98C126.65-.85%2C1.53%2C10.29.27%2C10.41Z' style='fill:%23fff%3Bstroke-width:0'/%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat;}
 
+    /* ─── PROCESS ────────────────────────────────────────────────── */
+    .process-section{background:var(--bg);padding:6rem 0 9rem;z-index:2;}
+    .process-head{grid-column:span 12;display:flex;flex-direction:column;gap:1rem;margin-bottom:5rem;}
+    @media(min-width:769px){.process-head{flex-direction:row;justify-content:space-between;align-items:flex-end;margin-bottom:6rem;}}
+    .process-heading{font-size:clamp(3rem,7.1vw,7.5rem);font-weight:400;line-height:1;letter-spacing:calc(-20em/1000);margin:0;}
+    .process-heading em{font-style:normal;background:var(--gradient);background-size:200% 200%;animation:rainbow 3s ease-in-out infinite;-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;}
+    .process-sub{font-size:var(--fs-24);max-width:30ch;line-height:1.3;margin:0;}
+    .process-steps{grid-column:span 12;display:grid;gap:0;}
+    .process-step{display:grid;grid-template-columns:1fr;gap:1rem;padding:2.5rem 0;border-bottom:1px solid rgba(0,0,0,.12);cursor:default;transition:background .3s;}
+    @media(min-width:769px){.process-step{grid-template-columns:8rem 1fr;gap:2rem;padding:3.5rem 0;}}
+    .process-step:first-child{border-top:1px solid rgba(0,0,0,.12);}
+    .step-num{font-family:var(--syne);font-size:clamp(2.5rem,5vw,5rem);font-weight:700;line-height:1;color:#000;opacity:.12;transition:opacity .4s;}
+    .process-step:hover .step-num{opacity:1;}
+    .step-body{display:flex;flex-direction:column;gap:.75rem;padding-top:.3rem;}
+    .step-title{font-size:var(--fs-44);font-weight:400;line-height:1;letter-spacing:calc(-20em/1000);margin:0;}
+    .step-desc{font-size:var(--fs-24);line-height:1.35;color:rgba(0,0,0,.65);margin:0;max-width:55ch;}
+
     /* ─── KOTAVERSE / CELEBRATING CTA ────────────────────────────── */
-    .kotaverse-cta{background:var(--bg);overflow:hidden;padding:6rem 0;z-index:2;}
+    .kotaverse-cta{background:#000;overflow:hidden;padding:6rem 0;z-index:2;}
+    .kotaverse-bg-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.35;pointer-events:none;z-index:0;}
+    .kotaverse-bg-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:1;pointer-events:none;}
+    .kotaverse-cta .container{position:relative;z-index:2;}
+    .kotaverse-cta .kotaverse-marquee-wrap{position:relative;z-index:2;}
     .kotaverse-inner{grid-column:span 12;display:flex;flex-direction:column;gap:2rem;align-items:flex-start;}
     @media(min-width:769px){.kotaverse-inner{flex-direction:row;justify-content:space-between;align-items:center;}}
-    .kotaverse-text h2{font-size:clamp(2rem,5vw,5rem);font-weight:400;letter-spacing:calc(-20em/1000);line-height:1.05;margin:0 0 1.5rem;}
-    .kotaverse-marquee-wrap{width:100%;overflow:hidden;border-top:1px solid rgba(0,0,0,.15);border-bottom:1px solid rgba(0,0,0,.15);padding:.75rem 0;}
+    .kotaverse-text h2{font-size:clamp(2rem,5vw,5rem);font-weight:400;letter-spacing:calc(-20em/1000);line-height:1.05;margin:0 0 1rem;color:#fff;}
+    .kotaverse-stats-line{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-size:1.125rem;color:rgba(255,255,255,.6);margin-bottom:1.5rem;align-items:center;}
+    .kotaverse-stats-line strong{color:#fff;}
+    .kotaverse-sep{color:rgba(255,255,255,.3);}
+    .kotaverse-text .btn-arrow .btn-inner{color:#fff;}
+    .kotaverse-text .btn-arrow .btn-border{border-color:#fff;}
+    .kotaverse-img-wrap{width:100%;max-width:480px;aspect-ratio:4/3;overflow:hidden;border-radius:1.5rem;}
+    @media(min-width:769px){.kotaverse-img-wrap{width:40%;}}
+    .kotaverse-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-kota);}
+    .kotaverse-cta:hover .kotaverse-img-wrap img{transform:scale(1.04);}
+    .kotaverse-marquee-wrap{width:100%;overflow:hidden;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);padding:.75rem 0;}
     .kotaverse-marquee-inner{display:flex;white-space:nowrap;animation:marquee-fwd 12s linear infinite;will-change:transform;}
-    .kotaverse-marquee-item{display:inline-flex;align-items:center;font-family:var(--syne);font-size:clamp(1.25rem,3vw,2.5rem);font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#000;padding:0 3rem;flex-shrink:0;}
+    .kotaverse-marquee-item{display:inline-flex;align-items:center;font-family:var(--syne);font-size:clamp(1.25rem,3vw,2.5rem);font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:0 3rem;flex-shrink:0;}
     .kotaverse-marquee-dot{width:8px;height:8px;border-radius:50%;background:var(--pink);display:inline-block;margin:0 1.5rem;}
 
     /* ─── FOOTER ─────────────────────────────────────────────────── */
@@ -414,6 +457,19 @@
     .footer-legal{display:flex;gap:1.5rem;}
     .footer-legal a{font-size:1.25rem;color:rgba(255,255,255,.7);}
     .footer-legal a:hover{color:#fff;}
+
+    /* ─── VIDEO MODAL ────────────────────────────────────────────── */
+    .reel-modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s var(--ease-kota);}
+    .reel-modal.open{opacity:1;pointer-events:all;}
+    .reel-modal video{width:90vw;max-width:1200px;max-height:80vh;border-radius:.75rem;display:block;}
+    .reel-modal-close{position:absolute;top:2rem;right:2rem;width:3rem;height:3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;}
+    .reel-modal-close:hover{background:rgba(255,255,255,.25);}
+    .reel-modal-close svg{width:20px;}
+    /* reel play button in hero */
+    .btn-reel{display:inline-flex;align-items:center;gap:.75rem;font-family:var(--montreal);font-size:1.125rem;font-weight:400;color:#000;background:rgba(255,255,255,.8);border:none;border-radius:2rem;padding:.65rem 1.25rem .75rem;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:pointer;transition:background .2s;}
+    .btn-reel:hover{background:#fff;}
+    .btn-reel-play{width:2rem;height:2rem;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .btn-reel-play svg{width:10px;margin-left:2px;}
 
     /* ─── MOBILE ─────────────────────────────────────────────────── */
     @media(max-width:768px){
@@ -446,6 +502,14 @@
   <div class="noise" aria-hidden="true"></div>
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
+
+  <!-- ═══════════════════════════════════════════════════ VIDEO MODAL -->
+  <div class="reel-modal" id="reelModal" role="dialog" aria-modal="true" aria-label="Showreel video">
+    <button class="reel-modal-close" id="reelClose" aria-label="Close video">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <video id="reelVideo" src="https://kota-content.b-cdn.net/app/uploads/2025/10/00-Kota-Showreel-2025-Final.mp4" controls playsinline preload="none"></video>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════════ HEADER -->
   <header class="header" id="siteHeader">
@@ -510,7 +574,10 @@
         <p class="hero-intro reveal">B2B-focused. Brand-led. Built to convert.</p>
         <div class="hero-actions reveal d1">
           <a href="#work" class="btn-pill">See our work</a>
-          <a href="#contact" class="btn-pill">Start your project</a>
+          <button class="btn-reel" id="reelBtn" aria-label="Watch showreel">
+            <span class="btn-reel-play"><svg viewBox="0 0 12 14" fill="none"><path d="M2 1l9 6-9 6V1z" fill="#fff"/></svg></span>
+            Watch reel
+          </button>
         </div>
         <div class="hero-arrow reveal d2">
           <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -620,6 +687,29 @@
           </div>
         </div>
 
+        <div class="service-panel reveal">
+          <div class="panel-bg"></div>
+          <div class="panel-text">
+            <h3 class="panel-heading">Digital Products</h3>
+            <div class="panel-tags">
+              <span class="panel-tag">SaaS interfaces</span>
+              <span class="panel-tag">UX/UI design</span>
+              <span class="panel-tag">Design systems</span>
+              <span class="panel-tag">Prototyping</span>
+            </div>
+            <p>We design and ship digital products that feel inevitable. Interfaces so intuitive your users forget they're using software — they just get things done.</p>
+            <a href="#contact" class="btn-arrow">
+              <span class="btn-border"></span>
+              <span class="btn-inner">Find out more
+                <svg class="btn-icon" viewBox="0 0 18 18" fill="none"><path d="M3.75 14.25L14.25 3.75M14.25 3.75H6.75M14.25 3.75V11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          </div>
+          <div class="panel-img">
+            <img src="https://kota-content.b-cdn.net/app/uploads/2025/04/ig-featured-mobile.jpg" alt="Digital products" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&q=80&auto=format&fit=crop'" />
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -656,6 +746,46 @@
             <h3 class="ethos-h3">Create to convert.</h3>
           </div>
           <p class="ethos-desc">We sweat the small stuff. From brand visuals to UX flow, every decision is intentional — designed to boost engagement, drive conversions, and build brand equity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ PROCESS -->
+  <section class="process-section" id="process" aria-label="Our process">
+    <div class="container">
+      <div class="process-head">
+        <h2 class="process-heading reveal">How we<br><em>get there</em></h2>
+        <p class="process-sub reveal d1">A clear, collaborative process from discovery to delivery — no smoke, no mirrors.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3 class="step-title">Discovery &amp; Strategy</h3>
+            <p class="step-desc">We spend time understanding your business, audience, and ambitions. We audit your existing presence, research your competitors, and define clear success criteria before a single pixel is drawn.</p>
+          </div>
+        </div>
+        <div class="process-step reveal d1">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3 class="step-title">Brand &amp; Creative Direction</h3>
+            <p class="step-desc">We establish visual direction through moodboards and concept explorations — deciding on tone, typography, colour, and motion before committing to full design. Fast to align. Zero wasted sprints.</p>
+          </div>
+        </div>
+        <div class="process-step reveal d2">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3 class="step-title">Design &amp; Prototype</h3>
+            <p class="step-desc">High-fidelity designs built in Figma. Interactive prototypes you can click through and test with real users. Animations specified. Responsive breakpoints documented. Everything ready for a smooth handoff.</p>
+          </div>
+        </div>
+        <div class="process-step reveal d3">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3 class="step-title">Build &amp; Launch</h3>
+            <p class="step-desc">Code-first development in Next.js, Webflow, or your preferred CMS. Performance-optimised. Accessibility-tested. Staged reviews throughout. We ship when it's genuinely ready — and we're there for the full launch.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1099,22 +1229,59 @@
           <div class="faq-a-wrap"><div class="faq-a"><div><p>We're a small team that punches above our weight. We combine strategic brand thinking with pixel-perfect craft, and we actually care about your results — not just your approval. We track what happens after launch because beautiful design that doesn't perform isn't good enough for us.</p></div></div></div>
         </div>
 
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4V20M4 12H20" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Do you work with startups or only established businesses?
+          </div>
+          <div class="faq-a-wrap"><div class="faq-a"><div><p>Both. We love early-stage companies building something bold — there's nothing better than helping a founder's vision come to life from scratch. We also enjoy evolving the identity and digital presence of established brands who know they need to level up. What matters is that you're ambitious and ready to invest properly in the outcome.</p></div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4V20M4 12H20" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Which CMS or tech stack do you build on?
+          </div>
+          <div class="faq-a-wrap"><div class="faq-a"><div><p>We're stack-agnostic but have deep expertise in Next.js, Webflow, and WordPress with headless setups. For SaaS products we work in Figma → Next.js / React. We'll recommend the right stack for your team's ability to manage it, not just what's fashionable. The goal is a site your team can actually own after launch.</p></div></div></div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q" role="button" tabindex="0">
+            <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4V20M4 12H20" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            How do we get started?
+          </div>
+          <div class="faq-a-wrap"><div class="faq-a"><div><p>Hit the "Hire us" button or drop us a line at hello@ciridae.com. We'll set up a short discovery call to understand your goals, timeline, and budget. From there we'll put together a tailored proposal. No templates, no generic packages — just a clear plan built around your specific challenges.</p></div></div></div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- ══════════════════════════════════════════ KOTAVERSE / CELEBRATING -->
   <section class="kotaverse-cta" aria-label="About CIRIDAE">
+    <!-- Blob video background -->
+    <video class="kotaverse-bg-video" src="https://kota-content.b-cdn.net/app/uploads/2024/01/blob-loop-uncompressed_1706098182.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="kotaverse-bg-overlay"></div>
     <div class="container">
       <div class="kotaverse-inner">
         <div class="kotaverse-text reveal">
           <h2>Celebrating 3 years<br>of bold brand work.</h2>
+          <p class="kotaverse-stats-line">
+            <span class="kotaverse-stat"><strong>200+</strong> projects shipped</span>
+            <span class="kotaverse-sep">—</span>
+            <span class="kotaverse-stat"><strong>98%</strong> client retention</span>
+            <span class="kotaverse-sep">—</span>
+            <span class="kotaverse-stat"><strong>12</strong> industry awards</span>
+          </p>
           <a href="#contact" class="btn-arrow">
             <span class="btn-border"></span>
             <span class="btn-inner">Work with us
               <svg class="btn-icon" viewBox="0 0 18 18" fill="none"><path d="M3.75 14.25L14.25 3.75M14.25 3.75H6.75M14.25 3.75V11.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
           </a>
+        </div>
+        <div class="kotaverse-img-wrap reveal d2">
+          <img src="https://kota-content.b-cdn.net/app/uploads/2025/04/Featured2-Compressed-poster.jpg" alt="CIRIDAE team" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80&auto=format&fit=crop'" />
         </div>
       </div>
     </div>
@@ -1127,11 +1294,7 @@
         <span class="kotaverse-marquee-dot"></span>
         <span class="kotaverse-marquee-item">2022 — 2026</span>
         <span class="kotaverse-marquee-dot"></span>
-        <span class="kotaverse-marquee-item">CIRIDAE</span>
-        <span class="kotaverse-marquee-dot"></span>
-        <span class="kotaverse-marquee-item">Web Design &amp; Branding</span>
-        <span class="kotaverse-marquee-dot"></span>
-        <span class="kotaverse-marquee-item">2022 — 2026</span>
+        <span class="kotaverse-marquee-item">Award-Winning Digital Agency</span>
         <span class="kotaverse-marquee-dot"></span>
         <span class="kotaverse-marquee-item">CIRIDAE</span>
         <span class="kotaverse-marquee-dot"></span>
@@ -1139,6 +1302,72 @@
         <span class="kotaverse-marquee-dot"></span>
         <span class="kotaverse-marquee-item">2022 — 2026</span>
         <span class="kotaverse-marquee-dot"></span>
+        <span class="kotaverse-marquee-item">Award-Winning Digital Agency</span>
+        <span class="kotaverse-marquee-dot"></span>
+        <span class="kotaverse-marquee-item">CIRIDAE</span>
+        <span class="kotaverse-marquee-dot"></span>
+        <span class="kotaverse-marquee-item">Web Design &amp; Branding</span>
+        <span class="kotaverse-marquee-dot"></span>
+        <span class="kotaverse-marquee-item">2022 — 2026</span>
+        <span class="kotaverse-marquee-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════ WHY US -->
+  <section class="perks-section" aria-label="Why CIRIDAE">
+    <div class="container">
+      <h2 class="perks-heading reveal">Why <span class="rainbow-text">CIRIDAE</span></h2>
+      <div class="perks-grid">
+
+        <div class="perk-card reveal">
+          <div class="perk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="2"/><path d="M16 24l6 6 10-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="perk-title">Boutique quality, agency horsepower</h3>
+          <p class="perk-desc">A tight, senior team means you work directly with the people doing the actual work — no account managers, no handoffs, no quality loss. Just decisive people with taste and technical depth.</p>
+        </div>
+
+        <div class="perk-card reveal d1">
+          <div class="perk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 40V20L24 8l16 12v20H30V28h-12v12H8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="perk-title">Strategy first, pixels second</h3>
+          <p class="perk-desc">Every project starts with your business goals, not a blank Figma file. We make sure every visual and UX decision has a commercial reason behind it — because beautiful work that doesn't perform is just decoration.</p>
+        </div>
+
+        <div class="perk-card reveal d2">
+          <div class="perk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="6" stroke="currentColor" stroke-width="2"/><path d="M16 24h16M24 16v16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="perk-title">Built to last and scale</h3>
+          <p class="perk-desc">We build with your future in mind. Clean code, documented systems, flexible CMS architecture. When you grow, your digital presence grows with you — without needing a full rebuild every 18 months.</p>
+        </div>
+
+        <div class="perk-card reveal d3">
+          <div class="perk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 4l5 10 11 1.6-8 7.8 1.9 11L24 29l-9.9 5.4L16 23.4 8 15.6 19 14z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="perk-title">Award-winning craft</h3>
+          <p class="perk-desc">Recognised by Awwwards, CSS Design Awards, and The Webby Awards. We set the benchmark — and we hold ourselves to it on every single project, regardless of budget or timeline pressure.</p>
+        </div>
+
+        <div class="perk-card reveal d1">
+          <div class="perk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 36c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="18" r="6" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3 class="perk-title">Real partnership, no surprises</h3>
+          <p class="perk-desc">Fixed-price projects. Clear milestones. Weekly check-ins. No scope creep ambushes or billing surprises. We work like a true extension of your team — honest when there are challenges, proactive when there are opportunities.</p>
+        </div>
+
+        <div class="perk-card reveal d2">
+          <div class="perk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 30l10-10 8 8 10-12 8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="perk-title">Obsessed with your results</h3>
+          <p class="perk-desc">We track conversions, engagement, and organic growth after every launch. If something isn't performing as expected, we dig in and fix it. A 98% client retention rate isn't marketing speak — it's because we behave this way by default.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1438,6 +1667,138 @@
       y: 60, opacity: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: '.results-heading', start: 'top 80%', once: true }
     });
+
+    // Process section: step numbers pop in
+    document.querySelectorAll('.process-step').forEach((step, i) => {
+      gsap.from(step.querySelector('.step-num'), {
+        opacity: 0, scale: 0.6, duration: 0.7, ease: 'back.out(2)',
+        scrollTrigger: { trigger: step, start: 'top 80%', once: true },
+        delay: i * 0.08
+      });
+      gsap.from(step.querySelector('.step-body'), {
+        opacity: 0, x: 30, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: step, start: 'top 80%', once: true },
+        delay: i * 0.08 + 0.1
+      });
+    });
+
+    // Perks grid stagger
+    gsap.from('.perk-card', {
+      opacity: 0, y: 50, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.perks-grid', start: 'top 75%', once: true }
+    });
+
+    // FAQ heading reveal
+    gsap.from('.faqs-heading', {
+      opacity: 0, y: 50, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.faqs-heading', start: 'top 80%', once: true }
+    });
+
+    // Articles cards stagger
+    gsap.from('.article-card', {
+      opacity: 0, y: 40, duration: 0.8, stagger: 0.12, ease: 'power3.out',
+      scrollTrigger: { trigger: '.articles-grid', start: 'top 80%', once: true }
+    });
+
+    // KotaverseCTA content reveal
+    gsap.from('.kotaverse-text', {
+      opacity: 0, x: -40, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.kotaverse-cta', start: 'top 75%', once: true }
+    });
+    gsap.from('.kotaverse-img-wrap', {
+      opacity: 0, x: 40, duration: 1, ease: 'power3.out', delay: 0.15,
+      scrollTrigger: { trigger: '.kotaverse-cta', start: 'top 75%', once: true }
+    });
+
+    // Ethos rows: staggered fade-in-up
+    document.querySelectorAll('.ethos-row').forEach((row, i) => {
+      gsap.from(row, {
+        opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: row, start: 'top 85%', once: true },
+        delay: i * 0.06
+      });
+    });
+
+    // Partners logos fade in
+    gsap.from('.partner-logo', {
+      opacity: 0, y: 20, duration: 0.6, stagger: 0.05, ease: 'power2.out',
+      scrollTrigger: { trigger: '.partners-logos', start: 'top 80%', once: true }
+    });
+
+    // Testimonials heading
+    gsap.from('.testimonials-heading', {
+      opacity: 0, y: 50, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.testimonials-heading', start: 'top 80%', once: true }
+    });
+
+    // Large CTA main heading
+    if(typeof SplitText !== 'undefined'){
+      const ctaH = document.querySelector('.cta-main-h');
+      if(ctaH){
+        const ctaSplit = new SplitText(ctaH, { type: 'lines' });
+        gsap.from(ctaSplit.lines, {
+          y: 80, opacity: 0, duration: 1.2, stagger: 0.12, ease: 'power3.out',
+          scrollTrigger: { trigger: ctaH, start: 'top 80%', once: true }
+        });
+      }
+    }
+
+    // Perks heading
+    gsap.from('.perks-heading', {
+      opacity: 0, y: 40, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.perks-heading', start: 'top 80%', once: true }
+    });
+
+    // Process heading
+    gsap.from('.process-heading', {
+      opacity: 0, y: 50, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.process-heading', start: 'top 80%', once: true }
+    });
+
+    // Footer email reveal
+    gsap.from('.footer-email', {
+      opacity: 0, y: 30, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.footer-email', start: 'top 90%', once: true }
+    });
+
+    // ─── VIDEO MODAL ─────────────────────────────────────────────────
+    const reelModal = document.getElementById('reelModal');
+    const reelVideo = document.getElementById('reelVideo');
+    const reelBtn   = document.getElementById('reelBtn');
+    const reelClose = document.getElementById('reelClose');
+
+    function openModal(){
+      reelModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      reelVideo.play().catch(()=>{});
+    }
+    function closeModal(){
+      reelModal.classList.remove('open');
+      document.body.style.overflow = '';
+      reelVideo.pause();
+      reelVideo.currentTime = 0;
+    }
+    if(reelBtn)  reelBtn.addEventListener('click', openModal);
+    if(reelClose) reelClose.addEventListener('click', closeModal);
+    reelModal.addEventListener('click', e => { if(e.target === reelModal) closeModal(); });
+    document.addEventListener('keydown', e => { if(e.key === 'Escape' && reelModal.classList.contains('open')) closeModal(); });
+
+    // ─── SMOOTH NAV LINKS (Lenis) ─────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if(id.length > 1){
+          const target = document.querySelector(id);
+          if(target){
+            e.preventDefault();
+            lenis.scrollTo(target, { offset: 0, duration: 1.4 });
+          }
+        }
+      });
+    });
+
+    // ─── RESIZE: refresh ScrollTrigger ───────────────────────────────
+    window.addEventListener('resize', () => { ScrollTrigger.refresh(); });
 
   </script>
 </body>
