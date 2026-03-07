@@ -503,9 +503,40 @@
     }
 
     /* Placeholder "screenshots" for services */
-    .service-img-1 { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%); }
-    .service-img-2 { background: linear-gradient(135deg, #1a0a1a 0%, #2d1b3d 50%, #1a0a2e 100%); }
-    .service-img-3 { background: linear-gradient(135deg, #0a1a0a 0%, #1a2d1a 50%, #0d1f0d 100%); }
+    .service-img-1 { 
+      background: #080810;
+      position: relative; overflow: hidden;
+    }
+    .service-img-1::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 50% 70%, rgba(113,70,242,0.35) 0%, transparent 70%),
+        linear-gradient(180deg, #080810 0%, #140a28 100%);
+    }
+    .service-img-2 { 
+      background: #100810;
+      position: relative; overflow: hidden;
+    }
+    .service-img-2::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 70% 60% at 40% 60%, rgba(220,60,180,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(113,70,242,0.2) 0%, transparent 60%),
+        linear-gradient(180deg, #100810 0%, #1e0a1a 100%);
+    }
+    .service-img-3 { 
+      background: #080f10;
+      position: relative; overflow: hidden;
+    }
+    .service-img-3::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: 
+        radial-gradient(ellipse 70% 50% at 60% 60%, rgba(0,180,160,0.25) 0%, transparent 70%),
+        linear-gradient(180deg, #080f10 0%, #0a1a1e 100%);
+    }
 
     .service-title {
       font-size: var(--fs-32);
@@ -674,10 +705,109 @@
     }
 
     /* Gradient placeholder images */
-    .proj-img-1 { background: linear-gradient(135deg, #0d0d0d 0%, #1a0a3e 40%, #2d1b6e 100%); aspect-ratio: 16/10; }
-    .proj-img-2 { background: linear-gradient(135deg, #0d1a0a 0%, #1a3e0a 40%, #2d6e1b 100%); aspect-ratio: 16/10; }
-    .proj-img-3 { background: linear-gradient(135deg, #1a0d0a 0%, #3e1a0a 40%, #6e2d1b 100%); aspect-ratio: 16/10; }
-    .proj-img-4 { background: linear-gradient(135deg, #0a0d1a 0%, #0a1a3e 40%, #1b2d6e 100%); aspect-ratio: 16/10; }
+    .proj-img-1 { 
+      aspect-ratio: 16/10;
+      background: #0a0a0f;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-img-1::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 70% 50% at 30% 60%, rgba(113,70,242,0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,131,255,0.15) 0%, transparent 60%),
+        linear-gradient(180deg, #0a0a0f 0%, #12082a 100%);
+    }
+    .proj-img-1::after {
+      content: 'AELIUS';
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .proj-img-2 { 
+      aspect-ratio: 16/10;
+      background: #050d08;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-img-2::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(40,160,80,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 80%, rgba(20,100,50,0.2) 0%, transparent 60%),
+        linear-gradient(135deg, #050d08 0%, #081a10 100%);
+    }
+    .proj-img-2::after {
+      content: 'VERDANT';
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .proj-img-3 { 
+      aspect-ratio: 16/10;
+      background: #0f0805;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-img-3::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 50%, rgba(220,120,40,0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 10% 20%, rgba(200,80,20,0.15) 0%, transparent 60%),
+        linear-gradient(180deg, #0f0805 0%, #1a0e06 100%);
+    }
+    .proj-img-3::after {
+      content: 'MAISON';
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.15);
+    }
+
+    .proj-img-4 { 
+      aspect-ratio: 16/10;
+      background: #050810;
+      position: relative;
+      overflow: hidden;
+    }
+    .proj-img-4::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 60% 70% at 20% 50%, rgba(30,100,220,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 90% 30%, rgba(60,150,255,0.15) 0%, transparent 60%),
+        linear-gradient(180deg, #050810 0%, #080d1e 100%);
+    }
+    .proj-img-4::after {
+      content: 'SYNTRA';
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.15);
+    }
 
     .project-overlay {
       position: absolute;
@@ -1211,6 +1341,57 @@
     }
 
     /* ===========================
+       MOBILE NAV
+    =========================== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--white);
+      transition: transform var(--anim), opacity var(--anim);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--black);
+      z-index: 1000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      transition: opacity var(--anim-smooth);
+    }
+    .mobile-nav.open { opacity: 1; }
+    .mobile-nav a {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 400;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      transition: color var(--anim-fast);
+    }
+    .mobile-nav a:hover { color: rgba(255,255,255,0.4); }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .mobile-nav { display: flex; }
+    }
+
+    /* ===========================
        CURSOR
     =========================== */
     @media (min-width: 769px) {
@@ -1297,6 +1478,9 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
     <a href="#contact" class="header-cta">
       Let's talk
       <svg viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1304,6 +1488,14 @@
       </svg>
     </a>
   </header>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#work" onclick="closeMobileNav()">Work</a>
+    <a href="#services" onclick="closeMobileNav()">Services</a>
+    <a href="#about" onclick="closeMobileNav()">About</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  </nav>
 
   <!-- ===========================
        HERO
@@ -1831,12 +2023,53 @@
       if (!isOpen) item.classList.add('open');
     }
 
+    // Count-up animation for stats
+    const statEls = document.querySelectorAll('.result-stat');
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.textContent;
+          const num = parseFloat(text);
+          const suffix = text.replace(/[\d.]/g, '');
+          let start = 0;
+          const dur = 1800;
+          const step = 16;
+          const inc = num / (dur / step);
+          const timer = setInterval(() => {
+            start = Math.min(start + inc, num);
+            el.textContent = Math.round(start) + suffix;
+            if (start >= num) clearInterval(timer);
+          }, step);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(el => statObserver.observe(el));
+
+    // Mobile hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    function closeMobileNav() {
+      hamburger && hamburger.classList.remove('open');
+      mobileNav && mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+    }
+
     // Smooth nav
     document.querySelectorAll('a[href^="#"]').forEach(link => {
       link.addEventListener('click', (e) => {
         const target = document.querySelector(link.getAttribute('href'));
         if (target) {
           e.preventDefault();
+          closeMobileNav();
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
